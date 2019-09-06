@@ -1,5 +1,10 @@
 import random
 
+def(intro):
+    print('''
+    Welcome to Spaceman!
+    ''')
+
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -11,7 +16,6 @@ def load_word():
     words_list = f.readlines()
     f.close()
 
-    words_list = words_list[0].split(' ')
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -82,5 +86,6 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
+intro()
 secret_word = load_word()
-spaceman(load_word())
+spaceman(secret_word)
