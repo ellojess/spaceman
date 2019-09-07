@@ -38,9 +38,9 @@ def is_word_guessed(secret_word, letters_guessed):
 
     for letters in secret_word:
         if letter not in lettersGuessed:
-            return true
+            return True
         else:
-            return false
+            return False
     # pass
     # ^this function needs testing: 'not in' --> return true or false first? stumped on double neg
 
@@ -59,11 +59,13 @@ def get_guessed_word(secret_word, letters_guessed):
          (underscore) instead.
     '''
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
+    #TODO: Loop through the letters in secret word and build a string that shows the letters
+    #that have been guessed correctly so far that are saved in letters_guessed and underscores
+    #for the letters that have not been guessed yet
 
-    #
-    # for letters in secret_word:
-    #
+
+    for letter in secret_word:
+        if letter in
 
     # pass
 
@@ -79,7 +81,12 @@ def is_guess_in_word(guess, secret_word):
     '''
     #TODO: check if the letter guess is in the secret word
 
-    pass
+    for guess in secret_word:
+        return True
+    else:
+        return False
+
+    #pass
 
 
 
