@@ -14,11 +14,11 @@ def load_word():
     Returns:
            string: The secret word to be used in the spaceman guessing game
     '''
-    f = open('words.txt', 'r')
+    f = open("words.txt", "r")
     words_list = f.readlines()
     f.close()
 
-    word_list = words_list[0].split(' ')
+    word_list = words_list[0].split(" ")
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -94,14 +94,13 @@ def is_guess_in_word(guess, secret_word):
     #pass
 
 
-
-
 def spaceman(secret_word):
 
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     guesses_left = 7
-    guess = ""
-    letters_guessed = []
+    guess = " "
+    letters_guessed = [ ]
+    revealed_word = False
 
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -126,10 +125,13 @@ def spaceman(secret_word):
 
         if len(guess) < 1:
             print("You didn't enter anything")
+            print("-------------------------------------")
         elif len(guess) > 1:
             print("Please only enter one letter at a time")
+            print("-------------------------------------")
         elif guess in letters_guessed:
             print("You already guessed that letter")
+            print("-------------------------------------")
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
         if is_guess_in_word(guess, secret_word):
@@ -137,17 +139,22 @@ def spaceman(secret_word):
         elif not is_guess_in_word(guess, secret_word):
             guesses_left -= 1
             print("Sorry, your guess was not in the word, try again")
+            print("-------------------------------------")
 
     #TODO: show the guessed word so far
 
             print(get_guessed_word(secret_word, letters_guessed))
 
     # show letters that have not been guessed yet
-        print("These letters haven't been guessed yet: " + alphabet.replace(guess, ''))
+        print("These letters haven't been guessed yet: " + alphabet.translate({ord(guess): None}))
+        print("-------------------------------------")
 
 
     #TODO: check if the game has been won or lost
-
+        if revealed_word == True:
+            print("You won!")
+        elif guesses_left == 0:
+            print("Sorry you didn't win, try again!")
 
 
 
