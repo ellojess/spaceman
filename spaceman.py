@@ -18,6 +18,7 @@ def load_word():
     words_list = f.readlines()
     f.close()
 
+    word_list = words_list[0].split(' ')
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -62,13 +63,13 @@ def get_guessed_word(secret_word, letters_guessed):
     #that have been guessed correctly so far that are saved in letters_guessed and underscores
     #for the letters that have not been guessed yet
 
-    display_word = ' '
+    display_word = " "
 
     for letter in secret_word:
         if letter in letters_guessed:
             display_word += letter
         else:
-            display_word += '_'
+            display_word += "_"
 
 
     # pass
@@ -142,7 +143,7 @@ def spaceman(secret_word):
             print(get_guessed_word(secret_word, letters_guessed))
 
     # show letters that have not been guessed yet
-        print(alphabet.replace('guess', ''))
+        print("These letters haven't been guessed yet: " + alphabet.replace(guess, ''))
 
 
     #TODO: check if the game has been won or lost
