@@ -1,12 +1,5 @@
 import random
 
-# def intro():
-#    print("Welcome to Spaceman!")
-
-#    print("The secret word contains: " + str(len(secret_word)) + " letters")
-
-#    print("You have " + str(guesses) + " incorrect guesses, please enter one letter per round")
-
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use
@@ -18,7 +11,7 @@ def load_word():
     words_list = f.readlines()
     f.close()
 
-    word_list = words_list[0].split(" ")
+    word_list = words_list[0].split(' ')
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -96,9 +89,10 @@ def is_guess_in_word(guess, secret_word):
 
 def spaceman(secret_word):
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet = set("abcdefghijklmnopqrstuvwxyz")
     guesses_left = 7
-    guess = " "
+    guess = ''
+    guessed = set()
     letters_guessed = [ ]
     revealed_word = False
 
@@ -146,7 +140,8 @@ def spaceman(secret_word):
             print(get_guessed_word(secret_word, letters_guessed))
 
     # show letters that have not been guessed yet
-        print("These letters haven't been guessed yet: " + alphabet.translate({ord(guess): None}))
+        guessed.add(guess)
+        print("These letters haven't been guessed yet: " + ''.join(sorted(alphabet - guessed)))
         print("-------------------------------------")
 
 
