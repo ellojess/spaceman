@@ -7,12 +7,12 @@ def load_word():
     Returns:
            string: The secret word to be used in the spaceman guessing game
     '''
-    f = open("words.txt", "r")
+    f = open('words.txt', 'r')
     words_list = f.readlines()
     f.close()
 
     word_list = words_list[0].split(' ')
-    secret_word = random.choice(words_list)
+    secret_word = random.choice(word_list)
     return secret_word
 
 def is_word_guessed(secret_word, letters_guessed):
@@ -106,7 +106,7 @@ def spaceman(secret_word):
 
     print("Welcome to Spaceman!")
 
-    print("The secret word contains: " + str(len(secret_word)) + " letters")
+    print(f"The secret word contains: {len(secret_word)} letters")
 
     print("You have " + str(guesses_left) + " incorrect guesses, please enter one letter per round")
 
