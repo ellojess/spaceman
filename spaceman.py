@@ -56,7 +56,7 @@ def get_guessed_word(secret_word, letters_guessed):
     #that have been guessed correctly so far that are saved in letters_guessed and underscores
     #for the letters that have not been guessed yet
 
-    display_word = " "
+    display_word = ""
 
     for letter in secret_word:
         if letter in letters_guessed:
@@ -64,6 +64,7 @@ def get_guessed_word(secret_word, letters_guessed):
         else:
             display_word += "_"
 
+    return display_word
 
     # pass
 
@@ -79,7 +80,7 @@ def is_guess_in_word(guess, secret_word):
     '''
     #TODO: check if the letter guess is in the secret word
 
-    for guess in secret_word:
+    if guess in secret_word:
         return True
     else:
         return False
@@ -93,8 +94,9 @@ def spaceman(secret_word):
     guesses_left = 7
     guess = ''
     guessed = set()
-    letters_guessed = [ ]
+    letters_guessed = ""
     revealed_word = False
+
 
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -112,20 +114,31 @@ def spaceman(secret_word):
 
     print("-------------------------------------")
 
-    while guesses_left >= 0:
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
-        if secret_word != get_guessed_word(secret_word, letters_guessed):
-            guess = input("Enter a letter: ")
+    print(secret_word)
 
-        if len(guess) < 1:
-            print("You didn't enter anything")
-            print("-------------------------------------")
-        elif len(guess) > 1:
-            print("Please only enter one letter at a time")
-            print("-------------------------------------")
-        elif guess in letters_guessed:
-            print("You already guessed that letter")
-            print("-------------------------------------")
+    while guesses_left > 0:
+        input_recieved = False
+    #TODO: Ask the player to guess one letter per round and check that it is only one letter
+        #print guessed letters so far
+        #print(get_guessed_word(secret_word, letters_guessed))
+
+        while input_recieved == False:
+            guess = input("Enter a letter: ")
+            if len(guess) < 1:
+                print("You didn't enter anything")
+                print("-------------------------------------")
+            elif len(guess) > 1:
+                print("Please only enter one letter at a time")
+                print("-------------------------------------")
+            elif guess in letters_guessed:
+                print("You already guessed that letter")
+                print("-------------------------------------")
+            input_recieved = True
+
+            #print how many guesses are left
+            print("You have " + str(guesses_left) + " incorrect guesses, please enter one letter per round")
+
+        letters_guessed+= guess
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
         if is_guess_in_word(guess, secret_word):
@@ -135,25 +148,24 @@ def spaceman(secret_word):
             print("Sorry, your guess was not in the word, try again")
             print("-------------------------------------")
 
-    #TODO: show the guessed word so far
+        #TODO: show the guessed word so far
+        print("guessed word: " + get_guessed_word(secret_word, letters_guessed))
 
-            print(get_guessed_word(secret_word, letters_guessed))
-
-    # show letters that have not been guessed yet
+        # show letters that have not been guessed yet
         guessed.add(guess)
         print("These letters haven't been guessed yet: " + ''.join(sorted(alphabet - guessed)))
         print("-------------------------------------")
 
 
     #TODO: check if the game has been won or lost
-        if revealed_word == True:
-            print("You won!")
-        elif guesses_left == 0:
-            print("Sorry you didn't win, try again!")
+    if revealed_word == True:
+        print("You won!")
+    elif guesses_left == 0:
+        print("Sorry you didn't win, try again!")
 
 
-
-
+def main():
 #These function calls that will start the game
-secret_word = load_word()
-spaceman(secret_word)
+spaceman(load_word())
+
+main()
