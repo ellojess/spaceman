@@ -29,12 +29,15 @@ def is_word_guessed(secret_word, letters_guessed):
 
     # not in explanation: https://stackoverflow.com/questions/10406130/check-if-something-is-not-in-a-list-in-python
 
-
+    # print(secret_word)
+    # print(letters_guessed)
     for letter in secret_word:
-        if letter not in lettersGuessed:
+        # print(letter)
+        if letter not in letters_guessed:
+            # print("false")
             return False
-        else:
-            return True
+    # print("true")
+    return True
     # pass
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -96,7 +99,6 @@ def spaceman(secret_word):
     guessed = set()
     letters_guessed = ""
 
-
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
     Args:
@@ -115,7 +117,7 @@ def spaceman(secret_word):
 
     print(secret_word)
 
-    while guesses_left <= len(secret_word) and guesses_left > 0:
+    while guesses_left > 0:
         input_recieved = False
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
 
@@ -129,12 +131,12 @@ def spaceman(secret_word):
                 print("You already guessed that letter")
             input_recieved = True
 
-            #print how many guesses are left
-            print("You have " + str(guesses_left) + " incorrect guesses, please enter one letter per round")
-
         letters_guessed+= guess
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
+        # print(guess)
+        # print(secret_word)
+
         if is_guess_in_word(guess, secret_word):
             print("Your guess appears in the word!")
             guesses_left -= 0
@@ -145,6 +147,9 @@ def spaceman(secret_word):
         #TODO: show the guessed word so far
         print("guessed word: " + get_guessed_word(secret_word, letters_guessed))
 
+        #print how many guesses are left
+        print("You have " + str(guesses_left) + " incorrect guesses, please enter one letter per round")
+
         # show letters that have not been guessed yet
         # about sets: https://stackoverflow.com/questions/57840813/how-to-remove-a-character-from-string-after-every-loop-in-a-while-loop
         guessed.add(guess)
@@ -152,11 +157,12 @@ def spaceman(secret_word):
         print("-------------------------------------")
 
 
-#TODO: check if the game has been won or lost
-    if is_word_guessed(secret_word, letters_guessed):
-        print("You won!")
-    elif guesses_left == 0:
-        print("Sorry you didn't win, try again!")
+    #TODO: check if the game has been won or lost
+        if is_word_guessed(secret_word, letters_guessed):
+            print("You won!")
+            break;
+        elif guesses_left < 0:
+            print("Sorry you didn't win, try again!")
 
 
 def main():
