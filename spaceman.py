@@ -95,7 +95,6 @@ def spaceman(secret_word):
     guess = ''
     guessed = set()
     letters_guessed = ""
-    revealed_word = False
 
 
     '''
@@ -116,23 +115,18 @@ def spaceman(secret_word):
 
     print(secret_word)
 
-    while guesses_left > 0:
+    while guesses_left <= len(secret_word) and guesses_left > 0:
         input_recieved = False
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
-        #print guessed letters so far
-        #print(get_guessed_word(secret_word, letters_guessed))
 
         while input_recieved == False:
             guess = input("Enter a letter: ")
             if len(guess) < 1:
                 print("You didn't enter anything")
-                print("-------------------------------------")
             elif len(guess) > 1:
                 print("Please only enter one letter at a time")
-                print("-------------------------------------")
             elif guess in letters_guessed:
                 print("You already guessed that letter")
-                print("-------------------------------------")
             input_recieved = True
 
             #print how many guesses are left
@@ -143,22 +137,23 @@ def spaceman(secret_word):
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
         if is_guess_in_word(guess, secret_word):
             print("Your guess appears in the word!")
+            guesses_left -= 0
         elif not is_guess_in_word(guess, secret_word):
             guesses_left -= 1
             print("Sorry, your guess was not in the word, try again")
-            print("-------------------------------------")
 
         #TODO: show the guessed word so far
         print("guessed word: " + get_guessed_word(secret_word, letters_guessed))
 
         # show letters that have not been guessed yet
+        # about sets: https://stackoverflow.com/questions/57840813/how-to-remove-a-character-from-string-after-every-loop-in-a-while-loop
         guessed.add(guess)
         print("These letters haven't been guessed yet: " + ''.join(sorted(alphabet - guessed)))
         print("-------------------------------------")
 
 
-    #TODO: check if the game has been won or lost
-    if revealed_word == True:
+#TODO: check if the game has been won or lost
+    if is_word_guessed(secret_word, letters_guessed):
         print("You won!")
     elif guesses_left == 0:
         print("Sorry you didn't win, try again!")
@@ -166,6 +161,6 @@ def spaceman(secret_word):
 
 def main():
 #These function calls that will start the game
-spaceman(load_word())
+    spaceman(load_word())
 
 main()
