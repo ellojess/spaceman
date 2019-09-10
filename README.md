@@ -8,11 +8,10 @@ You might be familiar with it's cousin hangman but out of respect to the tragica
 
 # Follow the prompt!
 
-{% comment %}
-### This is title text
-## Smaller bold text
-# Even Smaller bold text
-this is normal text
-- this is a dash
-1. this is counting in a list
-{% endcomment%}
+
+[//]: # (### This is title text)
+[//]: # (## Smaller bold text)
+[//]: # (# Even Smaller bold text)
+[//]: # (this is normal text)
+[//]: # (- this is a dash)
+[//]: # (1. this is counting in a list)
