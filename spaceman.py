@@ -127,7 +127,7 @@ def spaceman(secret_word):
 
     print("-------------------------------------")
 
-    print(secret_word)
+    # print(secret_word)
 
     while guesses_left > 0:
         input_recieved = False
@@ -176,8 +176,9 @@ def spaceman(secret_word):
         if is_word_guessed(secret_word, letter_guessed):
             print("You won!")
             break;
-        elif guesses_left < 0:
+        elif guesses_left == 0:
             print("Sorry you didn't win, try again!")
+            print("Your secret word was" + " '" + secret_word + "' ")
 
 
 def main():
