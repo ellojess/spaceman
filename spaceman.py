@@ -90,6 +90,16 @@ def is_guess_in_word(guess, secret_word):
 
     #pass
 
+# play again: https://stackoverflow.com/questions/17897183/python-starting-the-game-again
+def play_again():
+    while True:
+        answer = input("Do you want to play again? (Y/n): ")
+        if not answer or answer.lower() in ('y', 'yes'):
+            return True
+        elif answer.lower() in ('n', 'no'):
+            return False
+        else:
+            print("Not a valid answer!")
 
 def spaceman(secret_word):
 
@@ -171,7 +181,14 @@ def spaceman(secret_word):
 
 
 def main():
-#These function calls that will start the game
-    spaceman(load_word())
+    while True:
+        spaceman(load_word())
+        if not play_again():
+            return
+
+
+if __name__ == '__main__':
+    main()
+    exit()
 
 main()
