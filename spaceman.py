@@ -191,20 +191,25 @@ if __name__ == '__main__':
     main()
     exit()
 
-main()
+ #main()
 
 def test_guessed_word(): #tests to see if letters guessed are in word
-    word = get_guessed_word("halloween", ['a', 'l', 'e', 'n'])
-    assert word == "_all__een"
-    word = get_guessed_word("halloween", ['h','w', 'e', 'x'])
-    assert word == "h____wee_"
+    # word = get_guessed_word("halloween", ['a', 'l', 'e', 'n'])
+    assert get_guessed_word(("halloween"), ['a', 'l', 'e', 'n']) == "_all__een"
+    # word = get_guessed_word("halloween", ['h','w', 'e', 'x'])
+    assert get_guessed_word(("halloween"), ['h','w', 'e', 'x']) == "h____wee_"
 
 def test_word_guessed(): #tests to see if user guesses word correctly
-    word = is_word_guessed("better", ['b', 'e', 't', 'r'])
-    assert word == True
-    word = is_word_guessed("better", ['b', 'e', 't'])
-    assert word == False
+    # word = is_word_guessed("better", ['b', 'e', 't', 'r'])
+    assert is_word_guessed(("better"), ['b', 'e', 't', 'r']) is True
+    # word = is_word_guessed("better", ['b', 'e', 't'])
+    assert is_word_guessed(("better"), ['b', 'e', 't']) is False
 
-def test_play_again(): #tests to see if play_again function restarts game for user
-    user_input = play_again('Y')
-    assert user_input == True
+# def test_play_again(): #tests to see if play_again function restarts game for user
+#    answer = input("Do you want to play again? (Y/n): ")
+#    assert play_again() is True
+#    #needs checking
+
+def test_is_guess_in_word(): #tests to see if user letter guessed is correct
+    assert is_guess_in_word(("a"), ('art')) is True
+    assert is_guess_in_word(("b"), ('art')) is False
