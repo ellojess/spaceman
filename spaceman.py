@@ -26,7 +26,6 @@ def is_word_guessed(secret_word, letter_guessed):
         False otherwise
     '''
     # Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-
     # not in explanation: https://stackoverflow.com/questions/10406130/check-if-something-is-not-in-a-list-in-python
 
     # print(secret_word)
@@ -68,7 +67,6 @@ def get_guessed_word(secret_word, letter_guessed):
             display_word += "_"
 
     return display_word
-
     # pass
 
 
@@ -82,12 +80,10 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
     '''
     #check if the letter guess is in the secret word
-
     if guess in secret_word:
         return True
     else:
         return False
-
     #pass
 
 # play again: https://stackoverflow.com/questions/17897183/python-starting-the-game-again
@@ -180,7 +176,7 @@ def spaceman(secret_word):
             print("Sorry you didn't win, try again!")
             print("Your secret word was" + secret_word)
 
-def main():
+def main(): #entry point for game, starts game
     while True:
         spaceman(load_word())
         if not play_again():
@@ -188,27 +184,18 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    exit()
+    main() # new game starts
+    exit() # if user does not want to play again
 
  #main()
 
 def test_guessed_word(): #tests to see if letters guessed are in word
-    # word = get_guessed_word("halloween", ['a', 'l', 'e', 'n'])
     assert get_guessed_word(("halloween"), ['a', 'l', 'e', 'n']) == "_all__een"
-    # word = get_guessed_word("halloween", ['h','w', 'e', 'x'])
     assert get_guessed_word(("halloween"), ['h','w', 'e', 'x']) == "h____wee_"
 
 def test_word_guessed(): #tests to see if user guesses word correctly
-    # word = is_word_guessed("better", ['b', 'e', 't', 'r'])
     assert is_word_guessed(("better"), ['b', 'e', 't', 'r']) is True
-    # word = is_word_guessed("better", ['b', 'e', 't'])
     assert is_word_guessed(("better"), ['b', 'e', 't']) is False
-
-# def test_play_again(): #tests to see if play_again function restarts game for user
-#    answer = input("Do you want to play again? (Y/n): ")
-#    assert play_again() is True
-#    #needs checking
 
 def test_is_guess_in_word(): #tests to see if user letter guessed is correct
     assert is_guess_in_word(("a"), ('art')) is True
